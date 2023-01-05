@@ -65,11 +65,15 @@ def start_detection(image):
 while True:
     count += 1
     ret, picture = capture.read()
-    cv2.imshow("frame", picture)
-    
-    if count >= 20:
-        if cv2.waitKey(0):
-            cv2.imwrite(f"saved/imageAtFrame{count}.jpg", start_detection(picture))
+    if ret:
+        cv2.imshow("frame", picture)
+        if cv2.waitKey(25) & 0xFF == ord('q'):
+            cv2.imwrite(f"saved/result{count}.jpg", start_detection(picture))
+ 
+
+    # if count >= 20:
+    #     if cv2.waitKey(0):
+    #         cv2.imwrite(f"saved/imageAtFrame{count}.jpg", start_detection(picture))
 
 
 cv2.waitKey(0)
